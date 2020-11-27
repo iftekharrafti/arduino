@@ -10,9 +10,9 @@ FaceBook: http://tinyurl.com/y52rgdd4Full Project Link :
  Servo myservoa;
  Servo myservob;
 #include <SoftwareSerial.h>
-SoftwareSerial gsm(2,3);
+SoftwareSerial gsm(7,8);
 String outMessage = "Distbin One Is  Full Plese Clene IT!";
-String destinationNumber ="+880**********";
+String destinationNumber ="+88017*************";
 int trigPinA =A0;
 int echoPinA =A1;
 
@@ -36,8 +36,8 @@ int distanceC;
 int flag=0;
 int flagA=0;
 int flagC=0;
-int led2=12;
-int led3=11;
+//int led2=12;
+//int led3=11;
 void setup() 
 {
    myservoa.attach(9); 
@@ -50,9 +50,9 @@ void setup()
 
  pinMode(trigPinC,OUTPUT);
  pinMode(echoPinC,INPUT);
- pinMode(13,OUTPUT);
- pinMode(led2,OUTPUT);
-  pinMode(led3,OUTPUT);
+ //pinMode(13,OUTPUT);
+ //pinMode(led2,OUTPUT);
+ //pinMode(led3,OUTPUT);
  Serial.begin(9600);
   
 }
@@ -67,16 +67,16 @@ distanceA = durationA*0.034/2;
 
 if(distanceA > 10){
   flag=0;
-  digitalWrite(13,LOW);
+  //digitalWrite(13,LOW);
   delay(100);
 
 }
 
 
- if(distanceA < 10 && flag==0 ){//
-delay(100);
+ if(distanceA < 6 && flag==0 ){//
+delay(200);
 flag=1; 
-digitalWrite(13,HIGH);
+//digitalWrite(13,HIGH);
   
  
   gsm.begin(4800);
@@ -106,18 +106,19 @@ digitalWrite(trigPinB,LOW);
 durationB=pulseIn(echoPinB,HIGH);///////MOILA
 distanceB = durationB*0.034/2;
 
-if(distanceB < 10 &&  flagA==0){
+if(distanceB < 15 &&  flagA==0){
    flagA=1;
-  myservob.write(180); 
+  myservob.write(0); 
    delay(700);//////////choklet
-   myservob.write(0);
-   digitalWrite(led2,HIGH);
-
+   myservob.write(180);
+   //digitalWrite(led2,HIGH);
+  myservoa.write(0);///////GATE
+  flagC=0;//GATE
 }
 
 if(distanceB > 10){
    flagA=0;
-   digitalWrite(led2,LOW);
+   //digitalWrite(led2,LOW);
 } 
 
 
@@ -132,17 +133,17 @@ distanceC = durationC*0.034/2;
 
 if(distanceC < 20 &&  flagC==0){
    flagC=1;
-  myservoa.write(180);
- digitalWrite(led3,HIGH); 
+  myservoa.write(90);
+ //digitalWrite(led3,HIGH); 
 }
 
-if(distanceC > 20){
-   flagC=0;
-   delay(1000);
-   myservoa.write(0);  
-   digitalWrite(led3,LOW);  
+//if(distanceC > 20){
+   //flagC=0;
+  // delay(1300);
+   //myservoa.write(0);  
+   //digitalWrite(led3,LOW);  
  
-}
-Serial.println(distanceC);
+//}
+//Serial.println(distanceA);
 
 }
