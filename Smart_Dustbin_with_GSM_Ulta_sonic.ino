@@ -1,6 +1,6 @@
 /*
 Full Project Link : https://github.com/ShantonuAcharjee/Arduino-Smart-Dustbin
-Author: shantonuacharjee
+Author: shantonuacharjee1
 Email: shantonuacharjee@gmail.com
 YouTube :- http://tinyurl.com/yy374bou
 FaceBook: http://tinyurl.com/y52rgdd4Full Project Link :
